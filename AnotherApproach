@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+
+int helper(int *input,int i,int size,int x,int *output,int si,int osize){
+     if(size==0){
+          return osize;
+     }
+     if(input[0]==x){
+          output[si++]=i;
+          osize++;
+     }
+     
+     int ans =helper(input+1,i+1,size-1,x,output,si,osize);
+     return ans;
+}
+
+int allIndexes(int input[],int size,int x,int output[]){
+    
+    return helper(input,0,size,x,output,0,0);     
+
+}
+
+
+
+int main() {
+	// your code goes here
+	int n;
+	cin>>n;
+	
+	int *input=new int[n];
+	for(int i=0;i<n;i++){
+	     cin>>input[i];
+	}
+	
+	int x;
+	cin>>x;
+	
+	int *output=new int[n];
+	
+	int size=allIndexes(input,n,x,output);
+	
+	for(int i=0;i<size;i++){
+	     cout<<output[i]<<" ";
+	}
+	
+	delete [] input;
+	
+	
+	delete [] output;
+	return 0;
+}
